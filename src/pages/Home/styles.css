@@ -1,0 +1,317 @@
+.conteiner_main {
+    width: 100%;
+    background: #ffffff;
+    border-radius: 60px 60px 0px 0px;
+    margin-top: -70px;
+    height: 71px;
+    display: flex;
+    flex-direction: column;
+}
+
+.conteiner_filter {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-top: 55px;
+    margin-bottom: 50px;
+    gap: 25px;
+}
+
+.btn_filter {
+    all: unset;
+    width: 80px;
+    height: 30px;
+    left: 105px;
+    top: 171px;
+    background: #FAFAFA;
+    box-shadow: 0px 2px 11px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #000000;
+    margin-left: 4px;
+}
+
+.btn_filter img {
+    width: 15px;
+    height: 15px;
+}
+
+.content_table {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.header_list {
+    all: unset;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    width: 725px;
+    height: 58px;
+    background: #FAFAFA;
+    box-shadow: 0px 2px 11px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    list-style: none;
+}
+
+.header_list ul {
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 17px;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #000000;
+    margin-right: 175px;
+}
+
+.list_values {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.linha {
+    min-width: 110px;
+    max-width: 110px;
+}
+
+.list_values ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+}
+
+.list_values li {}
+
+.group_icon {
+    display: flex;
+    position: relative;
+    margin-left: 30px;
+    padding: 20px;
+}
+
+.group_icon img {
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.btn_edite {
+    all: unset;
+}
+
+.btn_delete {
+    all: unset;
+}
+
+.conteiner_summary {
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    flex-direction: column;
+    width: 236px;
+    height: 196px;
+    background: #FAFAFA;
+    box-shadow: 0px 2px 11px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin-top: 130px;
+}
+
+.summary_title {
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 21px;
+    color: #2F2F2F;
+    margin-top: 26px;
+    margin-left: 33px;
+}
+
+.container_entrada {
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    flex-direction: column;
+    margin-top: 23px;
+    margin-left: 33px;
+}
+
+.container_entrada strong {
+    display: flex;
+    margin-bottom: 12px;
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 15px;
+    color: #2F2F2F;
+}
+
+.container_entrada strong p {
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 15px;
+    display: flex;
+    align-items: center;
+    text-align: right;
+    color: #645FFB;
+    margin-left: 30px;
+}
+
+.container_saida strong {
+    display: flex;
+    margin-bottom: 12px;
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 15px;
+    color: #2F2F2F;
+    margin-left: 33px;
+}
+
+.container_saida strong p {
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 15px;
+    display: flex;
+    align-items: center;
+    text-align: right;
+    color: #FA8C10;
+    margin-left: 45px;
+}
+
+.container_saida hr {
+    border: 1px solid #EAEAEA;
+    width: 189px;
+    margin-left: 24px;
+}
+
+.container_saldo strong {
+    display: flex;
+    margin-bottom: 12px;
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 15px;
+    color: #2F2F2F;
+    margin-top: 16px;
+    margin-left: 33px;
+}
+
+.container_saldo strong p {
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 15px;
+    display: flex;
+    align-items: center;
+    text-align: right;
+    color: #3A9FF1;
+    margin-left: 45px;
+}
+
+.tbn_add {
+    all: unset;
+    background: #7978D9;
+    border-radius: 5px;
+    width: 236px;
+    height: 46px;
+    text-align: center;
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 17px;
+    align-items: center;
+    text-align: center;
+    color: #FFFFFF;
+    margin-top: 50px;
+    cursor: pointer;
+}
+
+.filter_panel-list {
+    padding: 32px;
+    background-color: aquamarine;
+    width: 100%;
+    min-height: 205px;
+    background: hsla(0, 41%, 95%, 1);
+    box-shadow: 0px 2px 11px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.filters_list {
+    list-style: none;
+    width: 600px;
+    flex-wrap: wrap;
+}
+
+.filters_list-item {
+    margin-bottom: 5px;
+    margin-right: 7px;
+    font-size: 10px;
+    font-weight: 400;
+    padding: 7px 10px;
+    min-width: 80px;
+    background-color: var(--snow-white);
+    box-shadow: 0px 2px 11px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.filter_add {
+    width: 8px;
+    border-radius: 45%;
+    font-size: 12px;
+    margin-left: 12px;
+    font-weight: 700;
+}
+
+.filter_buttons {
+    padding: 10px 0;
+    width: 300px;
+    gap: 18px;
+    justify-content: flex-start;
+}
+
+.filter_btn {
+    all: unset;
+    padding: 4px 11px;
+    min-width: 98px;
+    height: 30px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 700;
+    min-width: 80px;
+    background-color: var(--snow-white);
+    box-shadow: 0px 2px 11px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+}
+
+.filter_btn-apply {
+    background-color: var(--purple);
+    color: var(--white);
+}
+
+.filter_btn:hover {
+    cursor: pointer;
+}
