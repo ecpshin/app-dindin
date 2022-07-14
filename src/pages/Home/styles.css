@@ -1,11 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700;1,900&family=Rubik:wght@400;500;600;700&display=swap');
+
+:root {
+    --black: hsl(0, 0%, 0%, 1);
+    --white: hsla(0, 0%, 100%, 1);
+    --gradient-home: linear-gradient(180deg, rgba(5, 237, 227, 0.5) 0%, rgba(100, 95, 251, 0.5) 100%, rgba(100, 95, 251, 0.5) 100%);
+    --gradient-header: linear-gradient(90.23deg, #05EDE3 0.02%, #645FFB 99.63%);
+    --cyan: hsla(177, 96%, 47%, 1);
+    --purple: hsla(242, 95%, 68%, 1);
+    --light-purple: hsla(241, 56%, 66%, 1);
+    --vampire: hsla(232, 100%, 15%, 1);
+    --pumpkin: hsla(32, 96%, 52%, 1);
+    --rose-pink: hsla(316, 100%, 67%, 1);
+    --snow-white: hsla(0, 0%, 98%, 1);
+    --team-background: var(--gradient-home), url('../../images/background.svg');
+}
+
 .conteiner_main {
     width: 100%;
+    min-height: 100vh;
     background: #ffffff;
     border-radius: 60px 60px 0px 0px;
     margin-top: -70px;
     height: 71px;
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 .conteiner_filter {
@@ -14,7 +33,6 @@
     justify-content: flex-start;
     align-items: flex-start;
     margin-top: 55px;
-    margin-bottom: 50px;
     gap: 25px;
 }
 
@@ -77,11 +95,13 @@
 }
 
 .list_values {
+    height: 500px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
 }
+
 
 .linha {
     min-width: 110px;
@@ -95,7 +115,17 @@
     list-style: none;
 }
 
-.list_values li {}
+.table__list {
+    display: flex;
+    flex-direction: column;
+    height: 350px;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.table__list:hover {
+    overflow-y: scroll;
+}
 
 .group_icon {
     display: flex;

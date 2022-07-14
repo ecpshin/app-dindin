@@ -3,18 +3,26 @@ import { useState } from "react";
 import api from "../../services/api";
 import { getItem } from '../../utils/storage';
 import Close from "../../images/close.svg";
+import { useNavigate } from 'react-router-dom';
 
 
-function EditUser() {
+function EditUser({ visible, id = "modal", onClose = () => { visible(false) } }) {
 
   const userData = JSON.parse(getItem('usuario'));
-
+  const [showAlert, setShowAlert] = useState(false);
+  const [alert, setAlert] = useState(false);
+  const navigate = useNavigate();
   const [form, setForm] = useState({
     nome: userData.nome,
     email: userData.email,
     senha: "",
     confirmacaoSenha: ""
   });
+
+  const handleOutsideClick = (event) => {
+    console.log(event.target.id);
+    if (event.target.id === id) onClose();
+  };
 
   function handleChangeInputValue(event) {
     setForm({ ...form, [event.target.name]: event.target.value });
@@ -45,17 +53,45 @@ function EditUser() {
       };
 
       const response = await api.put("/usuario", updateData, config);
-      console.log(response);
+
+      if (response.status === 204) {
+        setAlert(true);
+        handleSuccess();
+      } else {
+        setAlert(false);
+        handleFail();
+      }
 
     } catch (error) {
       console.log(error.message);
     }
   }
 
+  function handleFail() {
+    setShowAlert(!showAlert);
+    setTimeout(() => {
+      setShowAlert(!showAlert);
+      navigate('/', { replace: true });
+    }, 2000);
+  }
+
+  function handleSuccess() {
+    setShowAlert(!showAlert);
+    setTimeout(() => {
+      setShowAlert(!showAlert);
+      navigate('/');
+    }, 5000);
+
+  }
+
   return (
-    <div id={'editar'} className="container-put">
+
+    <div id={id} className="container-put" onClick={handleOutsideClick}>
       <form className="form-put_register" onSubmit={handleSubmit} >
-        <img className="close-form" src={Close} width="30" alt="close" />
+        <button onClick={onClose} className="btn-close">
+          <img className="close-form" src={Close} alt="close" />
+        </button>
+
         <h1>Editar Perfil</h1>
 
         <div className="group-put_input">
@@ -117,8 +153,13 @@ function EditUser() {
         <button className="form-put_register__btn" type="submit">
           Confirmar
         </button>
+        {(showAlert) ?
+          <div className={(alert) ? 'alert green' : 'alert red'}>
+            {(alert) ? 'Registro atualizado com sucesso!' : 'Ocorreu um erro! verifique os dados.'}
+          </div>
+          : null}
       </form>
-      <span className="error"></span>
+
     </div>
   );
 }

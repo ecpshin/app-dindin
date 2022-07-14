@@ -1,20 +1,15 @@
-* {
-    margin: 0;
-    padding: 0;
-}
-
 .container-put {
     background: rgba(61, 61, 61, 0.48);
     height: 2000px;
     width: 100%;
     z-index: 100;
+    top: 0;
+    left: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     position: fixed;
 }
-
-
 
 .form-put_register {
     background: #FFFFFF;
@@ -106,7 +101,39 @@
     cursor: pointer;
 }
 
+.btn-close {
+    all: unset;
+    position: relative;
+    top: 20px;
+    right: 15px;
+}
+
+
 .close-form {
     margin-left: 370px;
     margin-top: 10px;
+}
+
+.alert {
+    width: 100%;
+    height: 40px;
+    font-size: 18px;
+    font-weight: 500;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    color: #FFF;
+    margin-top: 25px;
+
+    border-radius: 0 0 10px 10px;
+}
+
+.green {
+    background-color: #14a820;
+}
+
+.red {
+    background: #FF576B;
 }

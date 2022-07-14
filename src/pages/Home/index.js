@@ -99,11 +99,13 @@ function Home() {
                   <li className="linha">Valor</li>
                 </ul>
               </div>
-              {
-                (listaTrasacao) && listaTrasacao.map(transacao => (
-                  <Lista transacao={transacao} />
-                ))
-              }
+              <div className="table__list">
+                {
+                  (listaTrasacao) && listaTrasacao.map(transacao => (
+                    <Lista transacao={transacao} />
+                  ))
+                }
+              </div>
             </div>
           </div>
           <Summary

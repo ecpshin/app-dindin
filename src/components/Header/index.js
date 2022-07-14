@@ -6,35 +6,41 @@ import Logout from "../../images/logout.svg";
 import EditUser from "../Edit_User/index";
 import { useState } from 'react'
 import { getItem } from "../../utils/storage";
-
+import { useNavigate } from 'react-router-dom';
 
 
 function Header() {
 
   const [isEditVisible, setIsEditVisible] = useState(false);
   const userNome = getItem('userNome');
+  const navigate = useNavigate();
 
-  const handlLogout = () => {
+  function handleLogout() {
     localStorage.clear();
+    navigate('/');
   }
 
   return (
-    <>
+    <div>
       {isEditVisible ? (
-        <EditUser id={'editar'} />
+        <EditUser visible={setIsEditVisible} />
       ) : null}
-      <div className="conteiner">
-        <header className="conteiner_icons">
-          <img className="logo" src={Logo} alt="Dindin" />
-          <img onClick={() => setIsEditVisible(true)} className="avatar" src={Avatar} width="100" alt="Dindin" />
-          <span>{userNome}</span>
-          <Link to="/">
-            <button onClick={handlLogout}><img className="logout" src={Logout} width="100" alt="Dindin" /></button>
-          </Link>
-        </header>
-      </div>
-    </>
-
+      <header className="header_home dflex dflex--column">
+        <div className="header_content-home dflex flex--center-evenly">
+          <img src={Logo} className="header_logo dflex"
+            alt="App Logo" />
+          <div className="header_profile dflex dflex--row flex--center-center">
+            <img src={Avatar}
+              className="avatar header--img"
+              alt="Profile" onClick={() => setIsEditVisible(true)} />
+            <span className="header_username">{userNome}</span>
+            <button className="logout" onClick={handleLogout}>
+              <img src={Logout} alt="Logout" />
+            </button>
+          </div>
+        </div>
+      </header>
+    </div>
   );
 }
 

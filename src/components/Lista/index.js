@@ -33,7 +33,6 @@ function Lista({ transacao }) {
 
     return (
         <div>
-
             <ul key={transacao.id} className="headerTabela">
                 <li className="linha">{formataData(transacao.data)}</li>
                 <li className="linha">{diaDaSemana(transacao.data)}</li>
@@ -62,6 +61,7 @@ function Lista({ transacao }) {
                     }
                 </div>
             </ul>
+            <hr style={{ border: '0.5px solid #ccc' }} />
         </div>
     )
 }
