@@ -20,7 +20,7 @@ function ModalAdd({ titulo, id = "modal", onClose = () => { } }) {
     descricao: "",
     valor: 0,
     data: "",
-    categoria_id: 1
+    categoria_id: idCategoria
   });
 
 
@@ -34,7 +34,7 @@ function ModalAdd({ titulo, id = "modal", onClose = () => { } }) {
       descricao: "",
       valor: 0,
       data: new Date(),
-      categoria_id: 0,
+      categoria_id: idCategoria,
     });
     return;
   }
@@ -59,15 +59,8 @@ function ModalAdd({ titulo, id = "modal", onClose = () => { } }) {
   async function handleSubmitAdd(event) {
     event.preventDefault();
     try {
-      if (
-        !form.tipo ||
-        !form.valor ||
-        !form.categoria_id ||
-        !form.data ||
-        !form.descricao
-      ) {
+      if (!form.tipo || !form.valor || !form.categoria_id || !form.data || !form.descricao) {
         handleFail();
-        showAlert(false);
       }
 
       const dataObj = {
@@ -78,20 +71,24 @@ function ModalAdd({ titulo, id = "modal", onClose = () => { } }) {
         categoria_id: idCategoria
       }
 
+      console.log(dataObj);
+
       const response = await cadastrar(rota, dataObj);
+      console.log(response);
+      // handleResetForm();
 
-      handleResetForm();
-
-      if (response.data.id) {
-        setAlert(true);
-        return handleSuccess();
-      } else {
-        setAlert(false);
-        return handleFail();
-      }
+      // if (response.status === 201) {
+      //   setAlert(true);
+      //   return handleSuccess();
+      // } else {
+      //   setAlert(false);
+      //   return handleFail();
+      // }
+      return;
     } catch (error) {
       console.log(error);
     }
+    return;
   }
 
   useEffect(() => {

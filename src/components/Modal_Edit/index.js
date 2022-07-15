@@ -14,14 +14,16 @@ function ModalEdit({ transacao, id = "modal", onClose = () => { } }) {
     const [listaCategoria, setListaCategoria] = useState([]);
     const [alert, setAlert] = useState(false);
     const [showAlert, setShowAlert] = useState(false);
+
     const [form, setForm] = useState({
         tipo: transacao.tipo,
         descricao: transacao.descricao,
-        valor: transacao.valor / 100,
+        valor: (transacao.valor / 100).toFixed(2).toLocaleString(),
         data: dataForm(transacao.data),
-        categoria_id: transacao.categoria_id
+        categoria_id: (transacao.categoria_id).toString()
     });
 
+    console.log(form);
 
     const handleOutsideClick = (event) => {
         if (event.target.id === id) onClose();
@@ -64,7 +66,7 @@ function ModalEdit({ transacao, id = "modal", onClose = () => { } }) {
                 {
                     tipo: form.tipo.trim(),
                     descricao: form.descricao,
-                    valor: ajustaValor(form.valor.toString()),
+                    valor: ajustaValor(form.valor),
                     data: form.data,
                     categoria_id: idCategoria
                 },
@@ -83,7 +85,7 @@ function ModalEdit({ transacao, id = "modal", onClose = () => { } }) {
                 descricao: ""
             });
 
-            if (response.status) {
+            if (response.status === 204) {
                 setAlert(true);
                 handleSuccess();
             } else {
@@ -171,7 +173,6 @@ function ModalEdit({ transacao, id = "modal", onClose = () => { } }) {
                             <select
                                 id="categoria"
                                 className="form_add_input"
-                                type="text"
                                 name="categoria_id" onChange={(t) => setIdCategoria(t.target.value)}>
                                 {listaCategoria.map(categoria => (
                                     <option key={categoria.id}

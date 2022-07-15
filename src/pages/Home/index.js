@@ -6,6 +6,8 @@ import IconFilter from "../../images/icon_filter.svg";
 import Lista from '../../components/Lista';
 import Summary from "../../components/Summary";
 import { getItem } from "../../utils/storage";
+import Filtros from "../../components/Filtros";
+
 
 function Home() {
 
@@ -48,6 +50,36 @@ function Home() {
     } catch { }
   }
 
+  const [filtros, setFiltros] = useState([]);
+
+  function handleAddFiltro(value) {
+    const localFilter = filtros;
+    localFilter.push(value.toLowerCase());
+    setFiltros(localFilter);
+    return;
+  }
+
+  async function handleApplyFilter() {
+
+    try {
+      const response = await api.get('/transacao',
+        {
+          params: {
+            filtro: filtros
+          },
+          headers: {
+            Authorization: `Bearer ${getItem('token')}`
+          }
+        });
+      console.log(response);
+      setListaTrasacao(response.data);
+
+    } catch (error) {
+      console.log(error);
+
+    }
+  }
+
   useEffect(() => {
     listarTransition();
     getResumo();
@@ -65,14 +97,17 @@ function Home() {
                 <img src={IconFilter} alt="" /> Filtrar
               </button>
               {isVisiblePanel &&
-                <div
-                  className="filter_panel-list dflex dflex--column">
+                <div className="filter_panel-list dflex dflex--column">
                   <span className="filters_title">Categoria</span>
-                  <ul key={categories.id} className="filters_list dflex dflex--row">
+                  <ul className="filters_list dflex dflex--row">
                     {categories.map(categories => (
-                      <li className="filters_list-item">
+                      <li key={categories.id} className="filters_list-item">
                         <label>{categories.descricao}
-                          <input className="filter_add" name="filtro[]" defaultValue type="checkbox" />
+                          <input className="filter_add"
+                            type="checkbox"
+                            value={categories.descricao}
+                            onChange={(e) => handleAddFiltro(e.target.value)}
+                          />
                         </label>
                       </li>))}
                   </ul>
@@ -82,12 +117,15 @@ function Home() {
                       type="reset">
                       Limpar Filtros
                     </button>
-                    <button className="filter_btn filter_btn-apply dflex dflex--row flex--center-center"
+                    <button
+                      onClick={handleApplyFilter}
+                      className="filter_btn filter_btn-apply dflex dflex--row flex--center-center"
                       type="submit">
                       Aplicar Filtros
                     </button>
                   </div>
-                </div>}
+                </div>
+              }
             </div>
             <div className="list_values">
               <div className="header_list">
@@ -102,7 +140,7 @@ function Home() {
               <div className="table__list">
                 {
                   (listaTrasacao) && listaTrasacao.map(transacao => (
-                    <Lista transacao={transacao} />
+                    <Lista key={transacao.id} transacao={transacao} />
                   ))
                 }
               </div>

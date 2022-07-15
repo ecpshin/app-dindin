@@ -1,10 +1,19 @@
 import api from "../services/api";
 import { getItem } from "./storage";
-const config = { headers: { Authorization: 'Bearer ' + getItem('token') } };
 
-export const cadastrar = async (route, data) => {
+export async function cadastrar(route, data) {
+
     try {
-        return await api.post(route, data, config);
-    } catch {
+        const response = await api.post(route, data,
+            {
+                headers:
+                {
+                    Authorization: 'Bearer ' + getItem('token')
+                }
+            });
+        return response;
+
+    } catch (error) {
+        return error;
     }
 }

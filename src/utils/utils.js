@@ -1,12 +1,14 @@
-import { format } from 'date-fns';
+import { format, add } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
 
 export function formataData(date) {
-    return format(+new Date(date), 'dd/MM/yy');
+    const d = add(+new Date(date), { hours: 3 });
+    return format(+new Date(d), 'dd/MM/yy');
 }
 
 export function dataForm(date) {
-    return format(+new Date(date), 'yyyy-MM-dd');
+    const d = add(new Date(date), { hours: 3 });
+    return format(+new Date(d), 'yyyy-MM-dd');
 }
 
 export function diaDaSemana(date) {
@@ -23,13 +25,24 @@ export function formataMoeda(valor) {
 
 export function ajustaValor(valor) {
 
-    if (valor.indexOf('.') !== -1) {
-        return valor.replace(',', '');
-    }
-
     if (valor.indexOf(',') !== -1) {
-        return valor.replace(',', '');
+        valor.replace(',', '.');
+        console.log(valor);
+        return valor.replace(',', '.');
     }
 
-    return valor * 100;
+    if (valor.indexOf('.') !== -1) {
+        console.log(valor);
+        return Number(valor) * 100;
+    }
+
+    return (Number(valor) * 100).toString();
+}
+
+export function formatClass(string) {
+    if (string === 'entrada') {
+        return 'linha plus';
+    } else {
+        return 'linha minus';
+    }
 }

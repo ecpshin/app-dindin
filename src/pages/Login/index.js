@@ -24,7 +24,7 @@ function Login() {
 
     try {
       if (!form.email || !form.senha) {
-        console.log("preencha todos os campos");
+        window.alert("preencha todos os campos");
         return;
       }
 
@@ -38,7 +38,7 @@ function Login() {
       setItem("token", token);
       setItem('usuario', JSON.stringify(usuario));
       setItem('userId', usuario.id);
-      setItem('userNome', usuario.nome)
+      setItem('userNome', usuario.nome);
 
       navigate("/home");
 
@@ -68,7 +68,7 @@ function Login() {
         <div className="group_input">
           <form className="form_login" onSubmit={HandleSubmit}>
             <h1>Login</h1>
-            <label htmlfor="email" className="form_login_label">
+            <label htmlFor="email" className="form_login_label">
               E-mail
             </label>
             <input
@@ -79,7 +79,7 @@ function Login() {
               value={form.email}
               onChange={handleChangeInputValue}
             />
-            <label htmlfor="password" className="form_login_label">
+            <label htmlFor="password" className="form_login_label">
               Senha
             </label>
             <input

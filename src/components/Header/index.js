@@ -6,18 +6,14 @@ import Logout from "../../images/logout.svg";
 import EditUser from "../Edit_User/index";
 import { useState } from 'react'
 import { getItem } from "../../utils/storage";
-import { useNavigate } from 'react-router-dom';
-
 
 function Header() {
 
   const [isEditVisible, setIsEditVisible] = useState(false);
   const userNome = getItem('userNome');
-  const navigate = useNavigate();
 
   function handleLogout() {
     localStorage.clear();
-    navigate('/');
   }
 
   return (
@@ -34,9 +30,11 @@ function Header() {
               className="avatar header--img"
               alt="Profile" onClick={() => setIsEditVisible(true)} />
             <span className="header_username">{userNome}</span>
-            <button className="logout" onClick={handleLogout}>
-              <img src={Logout} alt="Logout" />
-            </button>
+            <Link to={'/'}>
+              <button className="logout" onClick={handleLogout}>
+                <img src={Logout} alt="Logout" />
+              </button>
+            </Link>
           </div>
         </div>
       </header>

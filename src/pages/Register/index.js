@@ -2,8 +2,13 @@ import "./styles.css";
 import Logo from "../../images/logo.svg";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import api from "../../services/api";
+import { cadastrar } from "../../utils/funcoes";
+import { useNavigate } from 'react-router-dom';
+
 function Register() {
+  const rota = '/usuario';
+  const navigate = useNavigate();
+
   const [form, setForm] = useState({
     nome: "",
     email: "",
@@ -15,27 +20,45 @@ function Register() {
     setForm({ ...form, [event.target.name]: event.target.value });
   }
 
+  function handleClearForm() {
+    setForm({ nome: "", email: "", senha: "", confirmacaoSenha: "" });
+    return;
+  }
+
   async function handleSubmit(event) {
     event.preventDefault();
     try {
-      if (
-        !form.nome ||
-        !form.email ||
-        !form.senha ||
-        form.senha !== form.confirmacaoSenha
-      ) {
+      if (!form.nome || !form.email || !form.senha) {
+        window.alert('Todos os campos são obirgatórios!');
         return;
       }
 
-      const response = await api.post("/usuario", {
+      if (form.senha.length < 8) {
+        window.alert('Informe uma senha com mínimo 8 caracteres!');
+        return;
+      }
+      if (form.senha !== form.confirmacaoSenha) {
+        window.alert('As senhas não conferem!');
+        return;
+      }
+
+      const dataUser = {
         nome: form.nome,
         email: form.email,
-        senha: form.senha,
-      });
+        senha: form.senha
+      }
 
+      const response = await cadastrar(rota, dataUser);
       console.log(response);
+      if (response.status === 201) {
+        window.alert('Registro realizado com sucesso!');
+        handleClearForm();
+        //navigate('/');
+        return;
+      }
+
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
     }
   }
 
@@ -82,6 +105,7 @@ function Register() {
             className="form_register_input"
             type="password"
             name="senha"
+            minLength={8}
             value={form.senha}
             onChange={handleChangeInputValue}
           />

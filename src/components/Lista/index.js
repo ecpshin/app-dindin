@@ -3,7 +3,7 @@ import ModalExcluir from "../../components/Modal_Excluir";
 import IconEditar from "../../images/pencil.svg";
 import IconExcluir from "../../images/lixo.svg";
 import ModalEdit from '../Modal_Edit';
-import { diaDaSemana, formataData, formataMoeda } from "../../utils/utils";
+import { diaDaSemana, formataData, formataMoeda, formatClass } from "../../utils/utils";
 import api from "../../services/api";
 import { useNavigate } from 'react-router';
 import { getItem } from '../../utils/storage';
@@ -38,7 +38,7 @@ function Lista({ transacao }) {
                 <li className="linha">{diaDaSemana(transacao.data)}</li>
                 <li className="linha">{transacao.descricao}</li>
                 <li className="linha">{transacao.categoria_nome}</li>
-                <li className="linha">{formataMoeda(transacao.valor)}</li>
+                <li className={formatClass(transacao.tipo)}>{formataMoeda(transacao.valor)}</li>
 
                 <div className="group_icon">
                     <button className="btn_edite" onClick={() => setIsModalVisible(true)}>

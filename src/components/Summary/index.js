@@ -1,5 +1,5 @@
 import { formataMoeda } from "../../utils/utils";
-import ModalAdd from "../Modal_Add_Registro";
+import ModalAdd from "../Modal_Add";
 
 function Summary({ extrato, isModalVisible, setIsModalVisible }) {
 
