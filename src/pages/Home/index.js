@@ -80,6 +80,11 @@ function Home() {
     }
   }
 
+  async function cleanFiltros() {
+    await listarTransition();
+    setFiltros([]);
+  }
+
   useEffect(() => {
     listarTransition();
     getResumo();
@@ -97,34 +102,36 @@ function Home() {
                 <img src={IconFilter} alt="" /> Filtrar
               </button>
               {isVisiblePanel &&
-                <div className="filter_panel-list dflex dflex--column">
-                  <span className="filters_title">Categoria</span>
-                  <ul className="filters_list dflex dflex--row">
-                    {categories.map(categories => (
-                      <li key={categories.id} className="filters_list-item">
-                        <label>{categories.descricao}
-                          <input className="filter_add"
-                            type="checkbox"
-                            value={categories.descricao}
-                            onChange={(e) => handleAddFiltro(e.target.value)}
-                          />
-                        </label>
-                      </li>))}
-                  </ul>
-                  <div className="filter_buttons dflex dflex--row">
-                    <button
-                      className="filter_btn dflex dflex--row flex--center-center"
-                      type="reset">
-                      Limpar Filtros
-                    </button>
-                    <button
-                      onClick={handleApplyFilter}
-                      className="filter_btn filter_btn-apply dflex dflex--row flex--center-center"
-                      type="submit">
-                      Aplicar Filtros
-                    </button>
+                <form onSubmit={(e) => e.preventDefault()}>
+                  <div className="filter_panel-list dflex dflex--column">
+                    <span className="filters_title">Categoria</span>
+                    <ul className="filters_list dflex dflex--row">
+                      {categories.map(categories => (
+                        <li key={categories.id} className="filters_list-item">
+                          <label>{categories.descricao}
+                            <input className="filter_add"
+                              type="checkbox"
+                              value={categories.descricao}
+                              onChange={(e) => handleAddFiltro(e.target.value)}
+                            />
+                          </label>
+                        </li>))}
+                    </ul>
+                    <div className="filter_buttons dflex dflex--row">
+                      <button onReset={cleanFiltros}
+                        className="filter_btn dflex dflex--row flex--center-center"
+                        type="reset">
+                        Limpar Filtros
+                      </button>
+                      <button
+                        onClick={handleApplyFilter}
+                        className="filter_btn filter_btn-apply dflex dflex--row flex--center-center"
+                        type="submit">
+                        Aplicar Filtros
+                      </button>
+                    </div>
                   </div>
-                </div>
+                </form>
               }
             </div>
             <div className="list_values">

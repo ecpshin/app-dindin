@@ -15,6 +15,7 @@ function ModalAdd({ titulo, id = "modal", onClose = () => { } }) {
   const [listaCategoria, setListaCategoria] = useState([]);
   const [alert, setAlert] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
+
   const [form, setForm] = useState({
     tipo: "saida",
     descricao: "",
@@ -75,16 +76,16 @@ function ModalAdd({ titulo, id = "modal", onClose = () => { } }) {
 
       const response = await cadastrar(rota, dataObj);
       console.log(response);
-      // handleResetForm();
+      handleResetForm();
 
-      // if (response.status === 201) {
-      //   setAlert(true);
-      //   return handleSuccess();
-      // } else {
-      //   setAlert(false);
-      //   return handleFail();
-      // }
-      return;
+      if (response.status === 201) {
+        setAlert(true);
+        return handleSuccess();
+      } else {
+        setAlert(false);
+        return handleFail();
+      }
+
     } catch (error) {
       console.log(error);
     }
